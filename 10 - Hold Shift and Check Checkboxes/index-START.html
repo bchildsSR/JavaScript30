@@ -62,43 +62,74 @@
   <div class="inbox">
     <div class="item">
       <input type="checkbox">
-      <p>This is an inbox layout.</p>
+      <p>TODO</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Check one item</p>
+      <p>TODO</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Hold down your Shift key</p>
+      <p>TODO</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Check a lower item</p>
+      <p>TODO</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Everything inbetween should also be set to checked</p>
+      <p>TODO</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Try do it without any libraries</p>
+      <p>TODO</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Just regular JavaScript</p>
+      <p>TODO</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Good Luck!</p>
+      <p>TODO</p>
     </div>
     <div class="item">
       <input type="checkbox">
-      <p>Don't forget to tweet your result!</p>
+      <p>TODO</p>
     </div>
   </div>
 
 <script>
+  const checkboxes = document.querySelectorAll('.inbox [type=checkbox]');
+
+  console.log(checkboxes);
+
+  let lastChecked;
+
+  function handleCheck(e) {
+      let inBetween = false;
+      if (e.shiftKey && this.checked) {
+          checkboxes.forEach(checkbox => {
+              console.log(checkbox);
+              if (checkbox === this || checkbox === lastChecked) {
+                  inBetween = !inBetween;
+                  console.log('Starting to check');
+              }
+
+              if(inBetween) {
+                  checkbox.checked = true;
+                  checkbox.nextElementSibling.innerHTML = "You've completed this task!";
+              }
+          })
+      }
+      if (this.checked) {
+          this.nextElementSibling.innerHTML = "You've completed this task!";
+      } else {
+          this.nextElementSibling.innerHTML = "TODO";
+      }
+      lastChecked = this;
+  }
+  checkboxes.forEach(checkbox => checkbox.addEventListener('click', handleCheck));
+
 </script>
 </body>
 </html>
