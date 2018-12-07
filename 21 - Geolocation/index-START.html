@@ -69,10 +69,9 @@
         console.log(err);
     });
 
-    const randomDeg = Math.random() * (360 - 1) + 1;
-    const randomSpeed = Math.random() * (50 - 1) + 1;
-
     setInterval(() => {
+        let randomDeg = Math.random() * (360 - 1) + 1;
+        let randomSpeed = Math.random() * (50 - 1) + 1;
         arrow.style.transform = `rotate(${randomDeg}deg)`;
         speed.textContent = Math.round(randomSpeed);
     }, 2000);
